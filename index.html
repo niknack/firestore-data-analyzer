@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firestore Data Analyzer — Explore, analyze &amp; export your Firestore data inside Chrome</title>
+  <meta name="description" content="Firebase doesn't show you your data — on any plan. Firestore Data Analyzer does: browse collections, aggregate records, visualize trends, and export as CSV, JSON or Excel, right inside Chrome. Your data never leaves your browser.">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="./"><span class="logo">🔥</span> Firestore Data Analyzer</a>
+      <nav class="site-nav">
+        <a href="./" class="active">Home</a>
+        <a href="guide/">User Guide</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="btn" href="guide/#getting-started">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Firebase doesn't show you your data.<br>This does — inside Chrome, in 2&nbsp;minutes.</h1>
+    <p class="lede">
+      The Firebase console gives you a raw document browser. Firestore Data Analyzer gives you
+      tables, aggregation, trend charts, and one-click export — in a Chrome side panel,
+      connected directly to your own Firestore project.
+    </p>
+    <div class="actions">
+      <a class="btn" href="guide/#getting-started">Read the User Guide</a>
+      <a class="btn secondary" href="privacy.html">Privacy: local-only, no tracking</a>
+    </div>
+    <p class="note">Works with every Firebase plan, including the free Spark plan. No server, no admin keys — your data never leaves your browser.</p>
+  </section>
+
+  <div class="section">
+    <h2>Everything the console is missing</h2>
+    <p class="sub">Each feature is documented in the <a href="guide/">User Guide</a>.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📂</div>
+        <h3>Auto-discovered collections</h3>
+        <p>Browse your Firestore data in the Firebase console and the extension quietly learns your collection names — pick them from a dropdown, no typing.</p>
+        <a class="more" href="guide/#collections">How it works →</a>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📋</div>
+        <h3>Fast, scrollable table view</h3>
+        <p>Large collections stream in progressively — first rows appear in under a second, with a live "Loaded N / M" progress count and infinite scroll.</p>
+        <a class="more" href="guide/#table-view">Table view →</a>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧮</div>
+        <h3>Group &amp; aggregate</h3>
+        <p>Tick the fields you care about and get instant group-by counts with bar charts. Results recompute live as you change fields.</p>
+        <a class="more" href="guide/#aggregation">Aggregation →</a>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h3>Trend charts</h3>
+        <p>Date fields are auto-detected and charted — see records per day at a glance, switch chart types with one click, and focus with a Top&nbsp;N picker.</p>
+        <a class="more" href="guide/#analytics">Analytics →</a>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📤</div>
+        <h3>Export to JSON, CSV, Excel</h3>
+        <p>Download whole collections in the format your workflow needs — full-fidelity JSON, spreadsheet-ready CSV, or Excel.</p>
+        <a class="more" href="guide/#export">Export →</a>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛡️</div>
+        <h3>Security-rules helper</h3>
+        <p>Hit "permission denied"? The extension generates a safe, read-only, UID-scoped rule for the exact collection you tried — copy, paste, retry.</p>
+        <a class="more" href="guide/#rules-helper">Rules helper →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section alt">
+    <div class="inner">
+      <h2>Up and running in four steps</h2>
+      <p class="sub">The full walkthrough lives in <a href="guide/#getting-started">Getting Started</a>.</p>
+      <ol class="steps">
+        <li>
+          <h3>Install the extension</h3>
+          <p>Add Firestore Data Analyzer to Chrome from the Chrome Web Store.</p>
+        </li>
+        <li>
+          <h3>Open your Firebase console</h3>
+          <p>Visit your project in the Firebase console. The extension auto-captures your project's web config — no copy-pasting keys.</p>
+        </li>
+        <li>
+          <h3>Open the side panel &amp; sign in</h3>
+          <p>Click the toolbar icon or the floating <em>Analyze</em> handle, then sign in with an email/password account from your own project's Firebase Authentication.</p>
+        </li>
+        <li>
+          <h3>Load a collection</h3>
+          <p>Pick a collection from the dropdown and explore: table, aggregation, charts, export.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Private by architecture, not by promise</h2>
+    <p class="sub">
+      Data flows directly between your browser and your own Firebase project. The extension has no
+      servers, contains no analytics or tracking code, and makes zero network calls to anything
+      except Firebase itself — a claim you can verify, and our test suite enforces.
+      Read the <a href="privacy.html">privacy policy</a>.
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>© 2026 Firestore Data Analyzer</span>
+      <nav>
+        <a href="guide/">User Guide</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:niknackster@gmail.com">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

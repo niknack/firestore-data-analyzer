@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide — Firestore Data Analyzer</title>
+  <meta name="description" content="Complete user guide for the Firestore Data Analyzer Chrome extension: setup, collections, table view, aggregation, analytics charts, export, and the security-rules helper.">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="../"><span class="logo">🔥</span> Firestore Data Analyzer</a>
+      <nav class="site-nav">
+        <a href="../">Home</a>
+        <a href="./" class="active">User Guide</a>
+        <a href="../privacy.html">Privacy</a>
+        <a class="btn" href="#getting-started">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="docs-wrap">
+
+    <aside class="docs-sidebar">
+      <div class="group-label">Setup</div>
+      <a href="#getting-started">Getting started</a>
+      <a href="#sign-in">Signing in</a>
+      <a href="#password-reset">Password reset</a>
+
+      <div class="group-label">Working with data</div>
+      <a href="#collections">Loading collections</a>
+      <a href="#table-view">Table view</a>
+      <a href="#aggregation">Aggregation</a>
+      <a href="#analytics">Analytics &amp; charts</a>
+      <a href="#export">Exporting data</a>
+
+      <div class="group-label">Access &amp; security</div>
+      <a href="#rules-helper">Security-rules helper</a>
+      <a href="#privacy">Privacy model</a>
+
+      <div class="group-label">Interface</div>
+      <a href="#console-handle">Console handle &amp; badge</a>
+
+      <div class="group-label">Help</div>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#faq">FAQ</a>
+      <a href="#support">Support</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>User Guide</h1>
+      <p class="lede">
+        Everything you need to explore, analyze, and export your Firestore data with the
+        Firestore Data Analyzer Chrome extension.
+      </p>
+
+      <section id="getting-started">
+        <h2>Getting started</h2>
+        <p>Firestore Data Analyzer lives in Chrome's side panel and connects directly to your own Firebase project. Setup takes about two minutes:</p>
+        <ol>
+          <li><strong>Install</strong> the extension from the Chrome Web Store.</li>
+          <li><strong>Open your Firebase console</strong> at <code>console.firebase.google.com</code> and navigate into the project you want to analyze. The extension automatically captures the project's web configuration (project ID, API key) from the console page — you never copy keys by hand.</li>
+          <li><strong>Open the side panel</strong> by clicking the extension's toolbar icon, or the floating <em>Analyze</em> handle that appears at the right edge of console pages.</li>
+          <li><strong>Sign in</strong> with an email/password account from your project's Firebase Authentication (see <a href="#sign-in">Signing in</a>).</li>
+          <li><strong>Load a collection</strong> from the dropdown and start exploring.</li>
+        </ol>
+        <div class="callout">
+          <p><strong>Which Firebase plan do I need?</strong> Any — including the free Spark plan. The extension reads data with the standard Firestore web SDK, exactly like your own app does. No BigQuery, no Blaze plan, no billing account.</p>
+        </div>
+      </section>
+
+      <section id="sign-in">
+        <h2>Signing in</h2>
+        <p>
+          The extension signs in against <strong>your own Firebase project's Authentication</strong> —
+          not a Firestore Data Analyzer account. Use an email/password user that exists in
+          <em>your</em> project (Firebase console → Authentication → Users). If your project doesn't
+          have one yet, you can create an account directly from the extension's sign-up form, or add
+          a user in the console first.
+        </p>
+        <p>
+          Your credentials go directly to Firebase Authentication (a Google service). They are never
+          seen, stored, or transmitted anywhere else. The extension only remembers your email locally
+          to pre-fill the login field.
+        </p>
+        <div class="callout">
+          <p><strong>"Invalid credentials" on sign-in?</strong> Firebase intentionally merges "no such user" and "wrong password" into one error to protect against email enumeration. Double-check both the email and the password — or use the reset link below.</p>
+        </div>
+      </section>
+
+      <section id="password-reset">
+        <h2>Password reset</h2>
+        <p>
+          Click <strong>Forgot password?</strong> on the sign-in form. Type just your email — no
+          password required — and the extension sends Firebase's built-in password reset email for
+          your project. A confirmation toast tells you where the email went; follow its link to set
+          a new password, then sign in normally.
+        </p>
+        <p>If the email doesn't arrive, check spam, and confirm the address actually exists as a user in your project's Authentication panel.</p>
+      </section>
+
+      <section id="collections">
+        <h2>Loading collections</h2>
+        <h3>Auto-discovery</h3>
+        <p>
+          Firestore's web SDK cannot list collection names, so the extension learns them from you:
+          as you browse <strong>Firestore → Data</strong> in the Firebase console, collection names
+          you visit are collected automatically (per project) and appear in the extension's
+          collection dropdown. No clicks needed — just browse your data once.
+        </p>
+        <h3>Manual entry</h3>
+        <p>
+          You can always type a collection name directly. Manually added names merge into the same
+          dropdown, de-duplicated. If the dropdown is empty, the sidebar shows a hint: open the
+          console's Firestore Data tab to refresh the list.
+        </p>
+        <h3>Progressive loading</h3>
+        <p>
+          Selecting a collection starts a progressive fetch: documents stream in batches of ~500
+          while a progress indicator shows <em>Loaded N / M</em> against the collection's total
+          count. The first rows are visible in well under a second even on large collections, and
+          you can start working immediately while the rest loads in the background.
+        </p>
+      </section>
+
+      <section id="table-view">
+        <h2>Table view</h2>
+        <p>
+          The Table tab shows your documents as rows with fields as columns. Rendering is
+          incremental — about 100 rows are appended at a time as you scroll, so even very large
+          collections stay smooth. Switching to another collection always refreshes every tab, so
+          you never look at stale data.
+        </p>
+      </section>
+
+      <section id="aggregation">
+        <h2>Aggregation</h2>
+        <p>
+          The Aggregation tab answers "how many per …?" questions. Tick one or more fields and the
+          group-by computes <strong>instantly and live</strong> — no calculate button. Results show
+          as counts with proportional bar charts.
+        </p>
+        <ul>
+          <li>Tick or untick fields to reshape the grouping on the fly.</li>
+          <li>Use the <strong>Top N</strong> selector (5 / 10 / 15 / 20) to focus the chart on the most frequent values; your choice is remembered across sessions.</li>
+          <li>While a large collection is still loading, results carry a <em>Partial — N of M docs</em> badge and recompute automatically once the load completes.</li>
+        </ul>
+      </section>
+
+      <section id="analytics">
+        <h2>Analytics &amp; charts</h2>
+        <p>
+          The Analytics tab turns your documents into charts. Compact metric cards summarize the
+          data on top; below them, chart-type chips let you switch the single displayed chart in
+          place — no scrolling through a stack of charts you didn't ask for.
+        </p>
+        <ul>
+          <li><strong>Automatic date detection:</strong> if your documents contain a date field (Firestore Timestamp, ISO string, or epoch milliseconds), the default chart is <em>Records per Day</em> — your growth curve, no configuration.</li>
+          <li><strong>Field selectors:</strong> choose primary, secondary, and tertiary fields to slice by; only chart types valid for your selection are offered.</li>
+          <li><strong>Top N:</strong> the same 5 / 10 / 15 / 20 picker as Aggregation, shared and persisted.</li>
+        </ul>
+      </section>
+
+      <section id="export">
+        <h2>Exporting data</h2>
+        <p>Pick a format and click <strong>Download</strong>:</p>
+        <ul>
+          <li><strong>JSON</strong> — full-fidelity documents, ideal for backups and scripts.</li>
+          <li><strong>CSV</strong> — flat rows for spreadsheets and data tools.</li>
+          <li><strong>Excel (.xlsx)</strong> — ready to open in Excel or Google Sheets.</li>
+        </ul>
+        <p>
+          Export activates once a collection has fully loaded, so a download always contains the
+          complete collection — never a partial snapshot.
+        </p>
+      </section>
+
+      <section id="rules-helper">
+        <h2>Security-rules helper</h2>
+        <p>
+          If your Firestore security rules don't grant read access, a fetch fails with
+          <em>permission denied</em> — and instead of a dead-end error, the extension opens a
+          guidance panel that fixes it in under a minute:
+        </p>
+        <ul>
+          <li>A generated rule snippet, pre-filled with the <strong>exact collection</strong> you tried and <strong>your signed-in user's UID</strong> — read-only, scoped to you alone. Pasting it cannot expose data to anyone else.</li>
+          <li>A <strong>copy button</strong> and a <strong>deep link</strong> straight to your project's rules editor in the Firebase console.</li>
+          <li>A <strong>Retry</strong> button to verify the fix immediately.</li>
+          <li>An opt-in <strong>recursive variant</strong> if your data lives in subcollections (clearly marked as including all nested data).</li>
+        </ul>
+        <div class="callout warn">
+          <p><strong>Add, don't replace.</strong> Paste the generated block <em>inside</em> your existing rules, alongside what's already there. Firestore rules combine permissively, so adding this block can't break or narrow your app's existing access — but replacing the whole file would.</p>
+        </div>
+        <p>Example of what the generated snippet looks like (yours is pre-filled with your real collection and UID):</p>
+        <pre><code>match /orders/{docId} {
+  allow read: if request.auth != null
+              &amp;&amp; request.auth.uid == "YOUR_UID";
+}</code></pre>
+      </section>
+
+      <section id="privacy">
+        <h2>Privacy model</h2>
+        <p>
+          The extension is <strong>local-only by architecture</strong>: data flows directly between
+          your browser and your own Firebase project. There are no servers, no analytics, no
+          tracking, and no network calls to anything except Firebase itself. A small usage log is
+          kept in your browser's local extension storage for troubleshooting and never leaves your
+          machine. Full details in the <a href="../privacy.html">privacy policy</a>.
+        </p>
+      </section>
+
+      <section id="console-handle">
+        <h2>Console handle &amp; badge</h2>
+        <p>
+          On Firebase console pages, a slim <em>Analyze</em> tab sits flush against the right edge
+          of the window — one click opens the side panel. After opening the panel (or if you dismiss
+          it with ×), it collapses to a thin sliver that stays out of your way; clicking the sliver
+          still opens the panel directly. The state is remembered across tabs and browser restarts,
+          and the handle re-expands when the extension captures a new project's config — the moment
+          it becomes useful again.
+        </p>
+        <p>
+          The toolbar icon also shows a small <strong>badge dot</strong> while you're on a Firebase
+          console tab, as a reminder that the analyzer is relevant there. Clicking the toolbar icon
+          opens the side panel directly.
+        </p>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <h3>The collection dropdown is empty</h3>
+        <p>Open your project's <strong>Firestore → Data</strong> tab in the Firebase console and browse your collections once — the dropdown fills automatically. You can also type a collection name manually.</p>
+        <h3>"Permission denied" when loading a collection</h3>
+        <p>Your security rules don't grant your signed-in user read access. Use the <a href="#rules-helper">rules helper panel</a> that appears — it generates the exact rule you need.</p>
+        <h3>"Config not found" / can't connect</h3>
+        <p>Make sure you've visited your project's pages in the Firebase console with the extension installed, so it can capture the web config. Reload the console page, then reopen the side panel.</p>
+        <h3>Sign-in keeps failing</h3>
+        <p>Remember you're signing in to <em>your own project's</em> Firebase Authentication — not a Firestore Data Analyzer account (there is no such thing). See <a href="#sign-in">Signing in</a> and <a href="#password-reset">Password reset</a>.</p>
+        <h3>Export button is disabled</h3>
+        <p>Export unlocks when the collection finishes loading, so downloads are never partial. Watch the <em>Loaded N / M</em> counter — on very large collections it can take a little while.</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Does my data leave my browser?</summary>
+            <p>No. The extension talks only to Firebase (Firestore and Firebase Authentication) using your own project credentials. There are no other endpoints, no analytics services, and no servers of ours. Our test suite enforces that the extension makes zero non-Firebase network calls.</p>
+          </details>
+          <details>
+            <summary>Do I need a paid Firebase plan?</summary>
+            <p>No. It works on every plan, including the free Spark plan. Reads count against your project's normal Firestore quota, exactly as if your own app performed them.</p>
+          </details>
+          <details>
+            <summary>Can it modify or delete my data?</summary>
+            <p>The extension only reads. The security rule it suggests is read-only too, so even the access you grant it can't write anything.</p>
+          </details>
+          <details>
+            <summary>Why do I have to sign in at all?</summary>
+            <p>Firestore access is governed by your project's security rules, which almost always require an authenticated user. Signing in with your own project's Auth means access control stays entirely in your hands.</p>
+          </details>
+          <details>
+            <summary>Which permissions does the extension request, and why?</summary>
+            <p><code>storage</code> (remember your config and preferences locally), <code>sidePanel</code> (show the UI), and host access to Firestore, Firebase Auth, and the Firebase console (capture your config and run the Analyze handle). Nothing else.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="support">
+        <h2>Support</h2>
+        <p>
+          Questions, bug reports, or feature ideas? Email
+          <a href="mailto:niknackster@gmail.com?subject=Firestore%20Data%20Analyzer%20feedback"><strong>niknackster@gmail.com</strong></a>
+          — we read everything.
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>© 2026 Firestore Data Analyzer</span>
+      <nav>
+        <a href="./">User Guide</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="mailto:niknackster@gmail.com">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Firestore Data Analyzer</title>
+  <meta name="description" content="Privacy policy for the Firestore Data Analyzer Chrome extension: a local-only tool with no servers, no analytics, and no tracking.">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="./"><span class="logo">🔥</span> Firestore Data Analyzer</a>
+      <nav class="site-nav">
+        <a href="./">Home</a>
+        <a href="guide/">User Guide</a>
+        <a href="privacy.html" class="active">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="prose">
+    <h1>Privacy Policy</h1>
+    <p class="date">Firestore Data Analyzer — Chrome Extension<br>Last updated: July 18, 2026</p>
+
+    <h2>Overview</h2>
+    <p>
+      Firestore Data Analyzer ("the Extension") is a Chrome extension that helps developers
+      explore, analyze, and export data from their own Firebase Firestore databases.
+    </p>
+    <div class="highlight">
+      <p>
+        The Extension is a <strong>local-only tool</strong>. Your data flows directly between
+        your browser and your own Firebase project. The Extension has no servers, includes
+        no analytics or tracking of any kind, and <strong>never transmits anything to us or
+        to any third party</strong>.
+      </p>
+    </div>
+
+    <h2>Data We Collect</h2>
+    <p><strong>We collect nothing.</strong> Everything the Extension handles stays in your browser:</p>
+
+    <h3>1. Firebase Configuration (stored locally)</h3>
+    <p>
+      The Extension captures your Firebase project configuration (API key, project ID, etc.)
+      from the Firebase Console page you visit. This data is stored <strong>locally in your
+      browser</strong> using Chrome's storage API and is <strong>never sent to our servers</strong>
+      — we do not have any. It is used solely to connect to <em>your own</em> Firestore database.
+    </p>
+
+    <h3>2. Firestore Data (processed locally)</h3>
+    <p>
+      When you browse collections, the Extension reads documents from <em>your</em> Firestore
+      database using <em>your</em> credentials. This data is processed entirely in your browser
+      for display, aggregation, and export. <strong>We never access, store, or transmit your
+      Firestore data.</strong>
+    </p>
+
+    <h3>3. Authentication Credentials</h3>
+    <p>
+      If you sign in using email/password, your credentials are sent directly to
+      Firebase Authentication (a Google service) and are <strong>never intercepted,
+      stored, or seen by us</strong>. The Extension only stores your email locally
+      to pre-fill the login field for convenience.
+    </p>
+
+    <h3>4. Local Usage Log (never transmitted)</h3>
+    <p>
+      The Extension keeps a small log of recent feature usage (for example "extension opened"
+      or "export performed") in your browser's local extension storage, used only for local
+      troubleshooting. This log <strong>never leaves your browser</strong>: the Extension makes
+      no network calls to any analytics service, and there is no opt-in prompt because there
+      is nothing to opt into. Uninstalling the Extension deletes the log.
+    </p>
+
+    <h2>Third-Party Services</h2>
+    <p>The Extension communicates only with:</p>
+    <ul>
+      <li><strong>Firebase / Google Cloud:</strong> To read your Firestore data and authenticate,
+      using your own project credentials. Governed by the
+      <a href="https://firebase.google.com/terms" target="_blank" rel="noopener">Firebase Terms of Service</a>.</li>
+    </ul>
+    <p>No other endpoints are contacted — no analytics providers, no update pings, no error reporting.</p>
+
+    <h2>Data Storage &amp; Security</h2>
+    <ul>
+      <li>All Firebase configuration, preferences, and the local usage log are stored locally in your browser via Chrome's Storage API.</li>
+      <li>No data is stored on any server operated by us; we operate none.</li>
+    </ul>
+
+    <h2>Your Rights</h2>
+    <ul>
+      <li><strong>Delete your data:</strong> Uninstalling the Extension removes all locally stored data. You can also clear the Extension's storage at any time via <code>chrome://extensions</code>.</li>
+      <li>Because we hold no data about you, there is nothing for us to access, export, or erase on your behalf.</li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+      We may update this policy from time to time. The "Last updated" date at the top
+      reflects the most recent revision. Continued use of the Extension after changes
+      constitutes acceptance.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For privacy questions, support, or feedback, email us at
+      <a href="mailto:niknackster@gmail.com"><strong>niknackster@gmail.com</strong></a>.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>© 2026 Firestore Data Analyzer</span>
+      <nav>
+        <a href="guide/">User Guide</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:niknackster@gmail.com">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
