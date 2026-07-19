@@ -62,7 +62,7 @@
         <p>Firestore Data Analyzer lives in Chrome's side panel and connects directly to your own Firebase project. Setup takes about two minutes:</p>
         <ol>
           <li><strong>Install</strong> the extension from the Chrome Web Store.</li>
-          <li><strong>Open your Firebase console</strong> at <code>console.firebase.google.com</code> and navigate into the project you want to analyze. The extension connects to your project automatically — nothing to copy, no setup forms.</li>
+          <li><strong>Open your Firebase console</strong> at <code>console.firebase.google.com</code> and navigate into the project you want to analyze. A small banner in the corner offers to connect the project — one click takes you to your project's <strong>Settings</strong> page, where the extension picks up the connection details by itself. Nothing to copy, no setup forms.</li>
           <li><strong>Open the side panel</strong> by clicking the extension's toolbar icon, or the floating <em>Analyze</em> handle that appears at the right edge of console pages.</li>
           <li><strong>Sign in</strong> with an email/password account from your project's Firebase Authentication (see <a href="#sign-in">Signing in</a>).</li>
           <li><strong>Load a collection</strong> from the dropdown and start exploring.</li>
@@ -253,7 +253,9 @@
         <h3>"Permission denied" when loading a collection</h3>
         <p>Your security rules don't grant your signed-in user read access. Use the <a href="#rules-helper">rules helper panel</a> that appears — it generates the exact rule you need.</p>
         <h3>"Config not found" / can't connect</h3>
-        <p>Make sure you've visited your project's pages in the Firebase console with the extension installed, so it can capture the web config. Reload the console page, then reopen the side panel.</p>
+        <p>The extension picks up your project's connection details from the <strong>Settings → General</strong> page of the Firebase console. If you haven't been there yet, a banner in the corner of the console offers to take you — click it, and the connection happens by itself. Then reopen the side panel.</p>
+        <h3>Switched to a different Firebase project?</h3>
+        <p>The extension stays connected to one project at a time. When you browse a different project in the console, a banner lets you know and offers to switch — one click takes you to the right page, the connection happens by itself, and the collection list and charts start fresh for the new project.</p>
         <h3>Sign-in keeps failing</h3>
         <p>Remember you're signing in to <em>your own project's</em> Firebase Authentication — not a Firestore Data Analyzer account (there is no such thing). See <a href="#sign-in">Signing in</a> and <a href="#password-reset">Password reset</a>.</p>
         <h3>Export button is disabled</h3>
